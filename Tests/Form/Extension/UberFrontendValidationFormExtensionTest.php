@@ -36,13 +36,14 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
      */
     public function testPrepareConstraintsAttributes()
     {
-        $entityMetadata = $this->validator->getMetadataFor('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
+        $entityMetadata = $this->validator->getMetadataFor('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Model\Post');
         $reflectedMethod = new ReflectionMethod($this->extension, 'prepareConstraintsAttributes');
         $reflectedMethod->setAccessible(TRUE);
         $preparedConstraintsAttributes = $reflectedMethod->invoke($this->extension, 'post[title]', $entityMetadata, array('Default'));
         $fullFieldNames = array_keys($preparedConstraintsAttributes);
         $constraintNames = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]]);
         $constraintProperties = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]][$constraintNames[0]]);
+
         $this->assertEquals('post[title]', $fullFieldNames[0]);
         $this->assertEquals('NotBlank', $constraintNames[0]);
         $this->assertEquals('Length', $constraintNames[1]);

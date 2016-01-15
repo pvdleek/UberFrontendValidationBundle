@@ -30,25 +30,37 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Configure Twig for proper form theming and checking existence of constraint files
+### Step 3: Add configuration
+
+Configure Twig for proper form theming and checking existence of constraint files:
 
 ```yml
 twig:
-  // some other options
+  # some other options
   form_themes:
     - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
 ```
 
-### Step 4: Proper displaying of form
+### Step 4: Proper form displaying
 
 In main layout enable forms validation:
 
 ```html
-{{ validation_init(form) }}
-
+{{ validation_init() }}
 ```
+If you want to use some assets minifier to validation resources, you need to pass an argument into `validation_init()` function.
 
-Then you form may look like this:
+For now available:
+
+```html
+{{ validation_init('yui') }} // for YUI compressor
+
+{{ validation_init('uglify') }} //for Uglify compressor
+```
+How to install and configure YUI Compressor read [here](http://symfony.com/doc/current/cookbook/assetic/yuicompressor.html).
+How to install and configure UglifyJS(UglifyCSS) read [here](http://symfony.com/doc/current/cookbook/assetic/uglifyjs.html).
+
+Then your form may look like this:
 
 ```html
 <form method="post" {{ form_enctype(form) }} >
@@ -67,14 +79,13 @@ Add `jQuery` to your project in one of the suitable [ways](http://jquery.com/dow
 
 2) If you want to use some custom styles, or scripts, you have to override `SleepnessUberFrontendValidation::form_validation.html.twig` template.
 
-3) Forms loaded by ajax will be validated too, just make sure that you enable `{{ validation_init() }}` function.
+3) Forms loaded by ajax will be validated too, just make sure that you enable `{{ validation_init() }}` function in template where loaded form is.
 
-4) If you assign some validation group to form type, and print some field that doesn't belong to the given group you will be surprised that validated will be only fields of given group,
-   but it works only when only single group assigned to form. (need to do in future)
+4) [Validation groups](http://symfony.com/doc/current/book/validation.html#book-validation-validation-groups) of objects also supported in your forms.
 
 #### Notes:
 
 1) If you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
 
-2) DateTime validator works only if your choose `single_text` widget for it, e.g. in your FormType
+2) DateTime validator works only if you choose `single_text` widget for it, e.g. in your FormType
 `->add('date', 'datetime', ['widget' => 'single_text'])` (for Date validator this rule works too).

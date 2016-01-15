@@ -1,0 +1,47 @@
+{
+    "name" : "sleepness/uber-frontend-validation-bundle",
+    "type" : "symfony-bundle",
+    "description" : "Provides a powerful tool for client side validation form data",
+    "keywords" : [
+        "validation",
+        "validator",
+        "forms",
+        "Symfony2",
+        "javascript"
+    ],
+    "homepage": "http://sleepness.github.io/",
+    "license": "MIT",
+    "authors" : [
+        {
+            "name" : "Oleg Zinchenko"
+        },
+        {
+            "name" : "Viktor Novikov"
+        },
+        {
+            "name" : "Alexandr Zhulev"
+        }
+    ],
+    "require" : {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/twig-bundle": "~2.3",
+        "symfony/validator": "^2.6",
+        "symfony/form": "^2.6",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2"
+    },
+    "require-dev": {
+        "symfony/finder": "~2.6",
+        "symfony/console": "~2.6",
+        "phpunit/phpunit": "~4.5"
+    },
+    "autoload" : {
+        "psr-4" : { "Sleepness\\UberFrontendValidationBundle\\" : "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "1.0.x-dev"
+        }
+    }
+}
