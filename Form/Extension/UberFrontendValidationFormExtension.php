@@ -111,6 +111,6 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'field';
+        return 'form';
     }
 } 

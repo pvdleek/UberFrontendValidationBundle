@@ -28,7 +28,7 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
      */
     public function testGetExtendedType()
     {
-        $this->assertEquals('field', $this->extension->getExtendedType());
+        $this->assertEquals('form', $this->extension->getExtendedType());
     }
 
     /**
